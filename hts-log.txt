@@ -1,0 +1,19 @@
+HTTrack3.49-2+htsswf+htsjava launched on Sat, 26 Jul 2025 10:04:57 at https://flex-global.web.app +*.png +*.gif +*.jpg +*.jpeg +*.css +*.js -ad.doubleclick.net/* -mime:application/foobar
+(winhttrack -qiC1%Ps2u1%s%uN0%I0p3DaK0H0%kf2A25000%f#f -F "Mozilla/4.5 (compatible; HTTrack 3.0x; Windows 98)" -%F "<!-- Mirrored from %s%s by HTTrack Website Copier/3.x [XR&CO'2014], %s -->" -%l "en, *" https://flex-global.web.app -O1 "D:\CODE\web_flexglobal\Web_Extract\web_flexglobal" +*.png +*.gif +*.jpg +*.jpeg +*.css +*.js -ad.doubleclick.net/* -mime:application/foobar )
+
+Information, Warnings and Errors reported for this mirror:
+note:	the hts-log.txt file, and hts-cache folder, may contain sensitive information,
+	such as username/password authentication for websites mirrored in this project
+	do not share these files/folders if you want these information to remain private
+
+10:04:57	Warning: 	File not parsed, looks like binary: https://flex-global.web.app/robots.txt
+10:04:57	Warning: 	HTML file (0 bytes) retransferred due to lack of cache: https://flex-global.web.app/card-id/
+10:04:58	Warning: 	HTML file (0 bytes) retransferred due to lack of cache: https://flex-global.web.app/reclamos/
+10:04:58	Warning: 	HTML file (0 bytes) retransferred due to lack of cache: https://flex-global.web.app/mision-vision/
+10:04:58	Warning: 	HTML file (0 bytes) retransferred due to lack of cache: https://flex-global.web.app/team/
+10:04:58	Warning: 	HTML file (0 bytes) retransferred due to lack of cache: https://flex-global.web.app/que-es-un-seguro-de-salud/
+10:04:58	Warning: 	HTML file (0 bytes) retransferred due to lack of cache: https://flex-global.web.app/tipos-de-planes-de-salud/
+10:04:58	Warning: 	HTML file (0 bytes) retransferred due to lack of cache: https://flex-global.web.app/como-aplicar-al-seguro/
+
+HTTrack Website Copier/3.49-2 mirror complete in 1 minutes 33 seconds : 63 links scanned, 61 files written (52276789 bytes overall), 49 files updated [50727259 bytes received at 545454 bytes/sec], 22537930 bytes transferred using HTTP compression in 36 files, ratio 97%, 3.3 requests per connection
+(No errors, 8 warnings, 0 messages)
