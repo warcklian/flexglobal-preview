@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asistente Virtual - FlexGlobal</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.hugeicons.com/font/hgi-stroke-rounded.css" rel="stylesheet">
+    <link rel="stylesheet" href="chatbot.css">
+</head>
+<body>
+    <!-- Botón Flotante del Chat -->
+    <div class="btn-chatbot-nuevo" id="btnChatbot">
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+            <path d="M16.8942 25.8539C22.4715 25.4833 26.9142 20.9775 27.2798 15.3211C27.3513 14.2142 27.3513 13.0678 27.2798 11.9609C26.9142 6.30443 22.4715 1.79876 16.8942 1.42801C14.9914 1.30153 13.0049 1.3018 11.1059 1.42801C5.5286 1.79876 1.08596 6.30443 0.720398 11.9609C0.648865 13.0678 0.648865 14.2142 0.720398 15.3211C0.853545 17.3813 1.76465 19.2887 2.83729 20.8994C3.46009 22.027 3.04906 23.4343 2.40036 24.6637C1.93262 25.5501 1.69876 25.9933 1.88653 26.3134C2.07432 26.6335 2.49376 26.6438 3.33265 26.6642C4.99164 26.7046 6.11032 26.2342 6.99832 25.5794C7.50194 25.2081 7.75377 25.0223 7.92733 25.001C8.10088 24.9797 8.44244 25.1203 9.12542 25.4017C9.73928 25.6545 10.452 25.8105 11.1059 25.8539C13.0049 25.9802 14.9914 25.9805 16.8942 25.8539Z" fill="#0066CC"/>
+            <path d="M11.7966 0.886937C13.4944 0.803084 15.2431 0.816967 16.9275 0.92893L17.4705 0.977758C23.046 1.61206 27.4095 6.2119 27.779 11.9289L27.8201 12.7815C27.8383 13.3531 27.8383 13.9296 27.8201 14.5012L27.779 15.3537C27.4094 21.0705 23.0459 25.6697 17.4705 26.3039L16.9275 26.3528C15.2431 26.4648 13.4944 26.4786 11.7966 26.3948L11.073 26.3528C10.4575 26.3118 9.79378 26.1789 9.19018 25.9621L8.9353 25.8635C8.58843 25.7206 8.34663 25.622 8.16967 25.5598C8.06962 25.5246 8.01319 25.5093 7.98705 25.5031C7.96619 25.5134 7.92525 25.5349 7.85815 25.5783C7.79227 25.621 7.71602 25.675 7.62377 25.7414L7.29467 25.9817C6.38322 26.6537 5.24872 27.1424 3.64721 27.1653L3.32006 27.1643C2.91926 27.1545 2.55436 27.147 2.27026 27.092C2.00104 27.0399 1.72851 26.9308 1.53393 26.6819L1.45483 26.5666C1.24675 26.2119 1.31728 25.8382 1.42651 25.5324C1.53492 25.229 1.73149 24.8587 1.95776 24.4299L2.07397 24.2033C2.62918 23.0744 2.85505 21.9807 2.40502 21.1526C1.38355 19.6137 0.482293 17.7738 0.25756 15.76L0.221428 15.3537C0.148514 14.2254 0.148529 13.0572 0.221428 11.9289L0.269279 11.3791C0.893409 5.73712 5.42209 1.30457 11.073 0.92893L11.7966 0.886937Z" fill="white"/>
+        </svg>
+    </div>
+
+    <!-- Contenedor del Chat -->
+    <div class="contenedor-chatbot-nuevo d-none" id="contenedorChatbot">
+        <div class="card chat-bot-nuevo">
+            <div class="card-header bg-primary text-white">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div class="d-flex align-items-center">
+                        <img src="../flex-global.web.app/fg-full-negro-dorado.svg" alt="FlexGlobal" height="30" class="me-2">
+                        <div>
+                            <h6 class="mb-0">Asistente Virtual</h6>
+                            <small class="opacity-75">FlexGlobal Insurance</small>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center gap-2">
+                        <button class="btn btn-sm btn-outline-light" id="btnContactarAsesor" title="Contactar Asesor">
+                            <i class="fas fa-headset"></i>
+                        </button>
+                        <button class="btn btn-sm btn-outline-light" id="btnToggleTema" title="Cambiar tema">
+                            <i class="fas fa-moon"></i>
+                        </button>
+                        <button class="btn btn-sm btn-outline-light" id="btnMinimizarChat" title="Minimizar">
+                            <i class="fas fa-minus"></i>
+                        </button>
+                        <button class="btn btn-sm btn-outline-light" id="btnCerrarChat" title="Cerrar">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card-body">
+                <div class="chat-messages" id="chatMessages">
+                    <div class="mensaje-bienvenida">
+                        <div class="mensaje-sistema">
+                            <strong>¡Hola! 👋 Soy tu asistente virtual de FlexGlobal</strong>
+                            <p class="mb-2">Estoy aquí para ayudarte a entender mejor nuestros seguros médicos y resolver todas tus dudas.</p>
+                            <p class="mb-0">Selecciona una de las opciones o escribe tu pregunta:</p>
+                        </div>
+                        
+                        <div class="opciones-iniciales">
+                            <button class="btn-opcion" data-opcion="planes">
+                                <i class="hgi hgi-stroke hgi-health-shield"></i>
+                                Ver Planes de Salud
+                            </button>
+                            <button class="btn-opcion" data-opcion="ver_cobertura">
+                                <i class="hgi hgi-stroke hgi-checklist"></i>
+                                Ver Cobertura Completa
+                            </button>
+                            <button class="btn-opcion" data-opcion="preexistentes">
+                                <i class="hgi hgi-stroke hgi-heart-add"></i>
+                                Enfermedades Preexistentes
+                            </button>
+                            <button class="btn-opcion" data-opcion="familia">
+                                <i class="hgi hgi-stroke hgi-users-group"></i>
+                                Seguro Familiar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card-footer">
+                <div class="input-group">
+                    <input type="text" class="form-control" id="inputMensaje" placeholder="Escribe tu pregunta aquí...">
+                    <button class="btn btn-primary" type="button" data-opcion="enviar" id="btnEnviar">
+                        <i class="hgi hgi-stroke hgi-send-02"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="chatbot.js"></script>
+</body>
+</html>

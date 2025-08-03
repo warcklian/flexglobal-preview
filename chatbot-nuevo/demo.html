@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo - Nuevo Chatbot FlexGlobal</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="chatbot.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .demo-container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            max-width: 600px;
+            text-align: center;
+        }
+        .feature-list {
+            text-align: left;
+            margin: 20px 0;
+        }
+        .feature-list li {
+            margin: 10px 0;
+            color: #495057;
+        }
+        .test-button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 10px;
+        }
+        .test-button:hover {
+            background: #0056b3;
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <div class="demo-container">
+        <h1 class="mb-4">🤖 Demo del Nuevo Chatbot</h1>
+        <p class="text-muted mb-4">
+            Este es un entorno de prueba para el nuevo chatbot de FlexGlobal. 
+            Haz clic en el botón flotante en la esquina inferior derecha para comenzar.
+        </p>
+
+        <div class="feature-list">
+            <h5 class="mb-3">✨ Características implementadas:</h5>
+            <ul class="list-unstyled">
+                <li>✅ Respuestas mejoradas y profesionales</li>
+                <li>✅ Flujo conversacional inteligente</li>
+                <li>✅ Opciones de respuesta relacionadas</li>
+                <li>✅ Diseño moderno y responsive</li>
+                <li>✅ Funcionamiento 100% local</li>
+                <li>✅ Animaciones suaves</li>
+                <li>✅ Compatible con móviles</li>
+            </ul>
+        </div>
+
+        <div class="mb-4">
+            <h6>🧪 Preguntas de prueba:</h6>
+            <button class="test-button" onclick="testQuestion('planes')">Planes de salud</button>
+            <button class="test-button" onclick="testQuestion('preexistentes')">Enfermedades preexistentes</button>
+            <button class="test-button" onclick="testQuestion('costos')">Precios</button>
+        </div>
+
+        <div class="alert alert-info">
+            <strong>💡 Tip:</strong> También puedes escribir preguntas personalizadas en el chat.
+        </div>
+    </div>
+
+    <!-- Chatbot -->
+    <!-- Botón flotante -->
+    <button id="btnChatbot" class="btn-flotante" title="Asistente FlexGlobal">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+        </svg>
+    </button>
+
+    <!-- Contenedor del chat -->
+    <div id="contenedorChatbot" class="chat-contenedor d-none">
+        <div class="chat-header">
+            <div class="chat-info">
+                <div class="chat-avatar">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                </div>
+                <div>
+                    <h5 class="chat-titulo">Asistente FlexGlobal</h5>
+                    <span class="chat-estado">✅ Siempre disponible</span>
+                </div>
+            </div>
+            <div class="d-flex align-items-center gap-2">
+                <button class="btn btn-sm btn-outline-light" id="btnContactarAsesor" title="Contactar Asesor">
+                    <i class="fas fa-headset"></i>
+                </button>
+                <button class="btn btn-sm btn-outline-light" id="btnToggleTema" title="Cambiar tema">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button class="btn btn-sm btn-outline-light" id="btnMinimizarChat" title="Minimizar">
+                    <i class="fas fa-minus"></i>
+                </button>
+                <button class="btn btn-sm btn-outline-light" id="btnCerrarChat" title="Cerrar">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+        </div>
+
+        <div id="chatMessages" class="chat-mensajes">
+            <div class="mensaje-bot mensaje-entrada">
+                <strong>¡Hola! 👋 Soy tu asistente de FlexGlobal</strong><br><br>
+                Estoy aquí para ayudarte a encontrar el seguro médico perfecto para ti y tu familia. 
+                ¿En qué puedo asistirte hoy?
+                
+                <div class="opciones-iniciales">
+                    <button class="btn-opcion" data-opcion="planes">📋 Ver Planes de Salud</button>
+                    <button class="btn-opcion" data-opcion="ver_cobertura">✅ Ver Cobertura Completa</button>
+                    <button class="btn-opcion" data-opcion="preexistentes">💙 Preexistentes</button>
+                    <button class="btn-opcion" data-opcion="familia">👨‍👩‍👧‍👦 Plan Familiar</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="chat-input-container">
+            <input type="text" id="inputMensaje" class="chat-input" placeholder="Escribe tu pregunta aquí...">
+            <button id="btnEnviar" class="btn-enviar" title="Enviar mensaje">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="22" y1="2" x2="11" y2="13"></line>
+                    <polygon points="22,2 15,22 11,13 2,9"></polygon>
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <script src="chatbot.js"></script>
+    <script>
+        function testQuestion(tema) {
+            // Abrir el chat si está cerrado
+            document.getElementById('btnChatbot').click();
+            
+            // Simular pregunta del usuario
+            setTimeout(() => {
+                const messagesContainer = document.getElementById('chatMessages');
+                const messageDiv = document.createElement('div');
+                messageDiv.className = 'mensaje-usuario mensaje-entrada';
+                
+                const questions = {
+                    planes: 'Quiero conocer los planes de salud disponibles',
+                    preexistentes: '¿Cubre enfermedades preexistentes?',
+                    costos: '¿Cuánto cuesta un seguro médico?'
+                };
+                
+                messageDiv.innerHTML = questions[tema];
+                messagesContainer.appendChild(messageDiv);
+                messagesContainer.scrollTop = messagesContainer.scrollHeight;
+
+                // Agregar respuesta del bot
+                setTimeout(() => {
+                    const botMessage = document.createElement('div');
+                    botMessage.className = 'mensaje-bot mensaje-entrada';
+                    
+                    const responses = {
+                        planes: '🩺 **Planes de Salud FlexGlobal**<br><br>Seguros médicos completos bajo ACA:<br>• Cobertura médica integral sin límites anuales<br>• Red nacional de hospitales y médicos especializados<br>• Medicamentos recetados con descuentos significativos<br>• Atención preventiva sin costo adicional<br>• Servicios de emergencia 24/7',
+                        preexistentes: '💙 **Condiciones Preexistentes**<br><br>¡Todas cubiertas por ley! Diabetes, hipertensión, cáncer, enfermedades del corazón y más. Sin período de espera ni cargos extras.',
+                        costos: '💰 **Costos y Subsidios**<br><br>Desde $0/mes con subsidios. Precio según plan (Bronce, Plata, Oro, Platino), ingresos y tamaño familiar. La mayoría califica para ayuda.'
+                    };
+                    
+                    botMessage.innerHTML = responses[tema];
+                    messagesContainer.appendChild(botMessage);
+                    messagesContainer.scrollTop = messagesContainer.scrollHeight;
+                }, 800);
+            }, 500);
+        }
+    </script>
+</body>
+</html>
